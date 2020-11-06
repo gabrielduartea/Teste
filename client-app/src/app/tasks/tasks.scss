@@ -1,0 +1,10 @@
+.tasks-list{
+    ::ng-deep{
+        .mat-row{
+           &:hover{
+               background-color: #220020;
+               cursor: pointer;
+           } 
+        }
+    }
+}

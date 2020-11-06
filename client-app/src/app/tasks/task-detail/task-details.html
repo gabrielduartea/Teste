@@ -1,0 +1,52 @@
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-12">
+            <ng-container *ngIf="getTask() | async as task;">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <mat-card-title>{{task.title}}</mat-card-title>
+                        <mat-card-subtitle>{{task.description}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions class=" text-center">
+                            <button mat-raised-button color="accent" matTooltip="Create a new Item!">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                            <button mat-raised-button color="primary" matTooltip="Edit Task!">
+                                <mat-icon>subtitles</mat-icon>
+                            </button>
+                            <button class="btn-lg" color="warn" mat-raised-button matTooltip="Delete Task!">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                    </mat-card-actions>
+                </mat-card>
+            </ng-container>
+            <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+        </div>   
+    </div>
+</div>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-12">
+            <ng-container>
+                <mat-card class="tasks-list">
+                        <mat-list class="tasks-list">
+                                <mat-list-item>
+                                    <mat-icon mat-list-icon>format_list_bulleted</mat-icon>
+                                    <h4 mat-line>Item</h4>
+                                    <button mat-icon-button color="accent" matTooltip="Finished Item!">
+                                        <mat-icon>done</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="basic" matTooltip="Edit Item!">
+                                        <mat-icon>subtitles</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="warn" matTooltip="Delete Item!">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                <mat-divider></mat-divider>
+                                </mat-list-item>
+                        </mat-list>
+                </mat-card>
+            </ng-container>
+        </div>
+    </div>
+</div>

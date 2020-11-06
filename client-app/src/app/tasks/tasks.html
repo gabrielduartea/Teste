@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <mat-card class="example-card">
+                <form #form="ngForm">
+                    <div class="container-fluid mb-4 p-0">
+                        <div class="row">    
+                            <div class="col-6">
+                                <mat-form-field class="w-100">
+                                    <input type="title" matInput [(ngModel)]="taskModel.title" placeholder="Title" name="title" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-6">
+                                <mat-form-field class="w-100">
+                                    <input type="description" matInput [(ngModel)]="taskModel.description" placeholder="Description" name="description" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div mat-dialog-actions>
+                                    <button class="w-100" mat-raised-button color="primary" matTooltip="Create a New Task!" (click)="submit(form)" color="primary" [disabled]="!form.valid">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-3 mb-3">
+    <div class="row">
+        <div class="col-12">
+            <ng-container *ngIf="getTasks() | async;">
+                <mat-card class="example-card">
+                    <mat-list class="tasks-list">
+                        <mat-list-item *ngFor="let task of (getTasks() | async)">
+                            <mat-icon mat-list-icon>format_list_bulleted</mat-icon>
+                            <h4 mat-line>{{task.title}}</h4>
+                            <button mat-icon-button (click)="taskDetails(task.id)" matTooltip="Details Task!">
+                                <mat-icon>more</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" matTooltip="Delete Task!">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <mat-divider></mat-divider>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card>
+            </ng-container>
+            <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+        </div>   
+    </div>
+</div>
